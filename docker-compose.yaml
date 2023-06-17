@@ -1,27 +1,27 @@
 version: '2'
 services:
- zookeeper:
-   image: quay.io/debezium/zookeeper
-   ports:
-     - "2181:2181"
-     - "2888:2888"
-     - "3888:3888"
-   environment:
-     - ALLOW_ANONYMOUS_LOGIN=yes
- 
- kafka:
-   image: quay.io/debezium/kafka
-   ports:
-     - "9092:9092"
-     - "29092:29092"
-   links:
-     - zookeeper
-   environment:
+  zookeeper:
+    image: quay.io/debezium/zookeeper
+    ports:
+      - "2181:2181"
+      - "2888:2888"
+      - "3888:3888"
+    environment:
+      - ALLOW_ANONYMOUS_LOGIN=yes
+
+  kafka:
+    image: quay.io/debezium/kafka
+    ports:
+      - "9092:9092"
+      - "29092:29092"
+    links:
+      - zookeeper
+    environment:
      - ZOOKEEPER_CONNECT=zookeeper:2181
      - ALLOW_PLAINTEXT_LISTENER=yes
      - ALLOW_ANONYMOUS_LOGIN=yes
 
-    kafka-ui:
+  kafka-ui:
     image: provectuslabs/kafka-ui
     container_name: kafka-ui
     ports:
