@@ -3,7 +3,7 @@ from datetime import datetime
 
 from kafka import KafkaConsumer
 
-def messages(from_connection, checker):
+def messages(from_connection):
    for message in from_connection:
       print(message)
 
@@ -13,7 +13,7 @@ if __name__ == '__main__':
        consumer = KafkaConsumer('request_to_course',
                                 bootstrap_servers=['localhost:29092'],
                                 auto_offset_reset='earliest')
-       messages(consumer, to_connection,checker)
+       messages(consumer)
    finally:
       consumer.close()
 
