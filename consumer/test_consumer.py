@@ -14,4 +14,6 @@ if __name__ == '__main__':
                                 bootstrap_servers=['localhost:29092'],
                                 auto_offset_reset='earliest')
        messages(consumer, to_connection,checker)
+   finally:
+      consumer.close()
 
