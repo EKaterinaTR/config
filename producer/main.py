@@ -25,11 +25,9 @@ if __name__ == '__main__':
         sleeptime = float(sys.argv[1]) / 1000.0
     else:
         sleeptime = 2
-    producer = KafkaProducer(bootstrap_servers=['localhost:29092'],
-                             value_serializer=lambda m: json.dumps(m).encode('ascii'))
+    producer = KafkaProducer(bootstrap_servers=['localhost:29092'])
     try:
         while True:
-            producer = KafkaProducer(bootstrap_servers=['broker1:1234'])
             producer.send('request_to_course', message())
             producer.flush()
             sleep(sleeptime)
